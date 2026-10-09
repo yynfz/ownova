@@ -3,12 +3,16 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WalletProvider } from "@/components/wallet/WalletProvider";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+
 export const metadata: Metadata = {
   title: "OWNOVA - Fractional Villa Co-Ownership",
   description: "On-chain vacation access marketplace",
 };
+
 export default function RootLayout({
   children,
 }: {
@@ -25,9 +29,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${manrope.variable} font-body antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <WalletProvider>
+          <Header />
+          {children}
+          <Footer />
+        </WalletProvider>
       </body>
     </html>
   );
